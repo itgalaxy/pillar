@@ -18,6 +18,7 @@ class FeatureFactoryTest extends \WP_UnitTestCase
             'pillar-htmlmin',
             'pillar-jpeg-quality',
             'pillar-markup-wrapper',
+            'pillar-max-resolution-upload-image',
             'pillar-microformat',
             'pillar-no-assets-versioning',
             'pillar-no-dangerous-files',
