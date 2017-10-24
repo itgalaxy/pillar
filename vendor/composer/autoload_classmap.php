@@ -104,7 +104,7 @@ return array(
     'Itgalaxy\\Pillar\\Feature\\HeadCleanUpFeature' => $baseDir . '/src/Itgalaxy/Feature/HeadCleanUpFeature.php',
     'Itgalaxy\\Pillar\\Feature\\HtmlminFeature' => $baseDir . '/src/Itgalaxy/Feature/HtmlminFeature.php',
     'Itgalaxy\\Pillar\\Feature\\JpegQualityFeature' => $baseDir . '/src/Itgalaxy/Feature/JpegQualityFeature.php',
-    'Itgalaxy\\Pillar\\Feature\\ModifyTheReadMore' => $baseDir . '/src/Itgalaxy/Feature/ModifyTheReadMore.php',
+    'Itgalaxy\\Pillar\\Feature\\ExcerptMoreFeature' => $baseDir . '/src/Itgalaxy/Feature/ModifyTheReadMore.php',
     'Itgalaxy\\Pillar\\Feature\\NoAssetsVersioningFeature' => $baseDir . '/src/Itgalaxy/Feature/NoAssetsVersioningFeature.php',
     'Itgalaxy\\Pillar\\Feature\\NoDangerousFilesFeature' => $baseDir . '/src/Itgalaxy/Feature/NoDangerousFilesFeature.php',
     'Itgalaxy\\Pillar\\Feature\\NoDefaultWordpressStylesFeature' => $baseDir . '/src/Itgalaxy/Feature/NoDefaultWordpressStylesFeature.php',

@@ -132,7 +132,7 @@ class ComposerStaticInit73589958e6debc5f86dfbcce09460e0e
         'Itgalaxy\\Pillar\\Feature\\HeadCleanUpFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HeadCleanUpFeature.php',
         'Itgalaxy\\Pillar\\Feature\\HtmlminFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HtmlminFeature.php',
         'Itgalaxy\\Pillar\\Feature\\JpegQualityFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/JpegQualityFeature.php',
-        'Itgalaxy\\Pillar\\Feature\\ModifyTheReadMore' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ModifyTheReadMore.php',
+        'Itgalaxy\\Pillar\\Feature\\ExcerptMoreFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ModifyTheReadMore.php',
         'Itgalaxy\\Pillar\\Feature\\NoAssetsVersioningFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/NoAssetsVersioningFeature.php',
         'Itgalaxy\\Pillar\\Feature\\NoDangerousFilesFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/NoDangerousFilesFeature.php',
         'Itgalaxy\\Pillar\\Feature\\NoDefaultWordpressStylesFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/NoDefaultWordpressStylesFeature.php',

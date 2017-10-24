@@ -98,6 +98,9 @@ class HtmlminFeature extends FeatureAbstract
             }
 
             if (class_exists('\\WPSEO_Frontend')) {
+                // Remove ` Yoast SEO` version comment.
+                add_filter('wpseo_hide_version', '__return_true');
+
                 // Remove head Yoast SEO version info
                 remove_action('wpseo_head', [\WPSEO_Frontend::get_instance(), 'debug_marker'], 2);
 
@@ -144,9 +147,6 @@ class HtmlminFeature extends FeatureAbstract
                 add_action('wp_head', [$this, 'renderRestOutputLinkWpHead'], 10, 0);
             }
         }, 0);
-
-        // Remove ` Yoast SEO` version comment.
-        add_filter('wpseo_hide_version', '__return_true');
 
         // Remove `Stream` HTML comment.
         add_filter('wp_stream_frontend_indicator', '__return_false');

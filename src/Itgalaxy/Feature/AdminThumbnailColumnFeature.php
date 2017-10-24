@@ -5,9 +5,10 @@ use Itgalaxy\Pillar\Base\FeatureAbstract;
 
 class AdminThumbnailColumnFeature extends FeatureAbstract
 {
-    protected $widthThumbnail = 100;
-
-    protected $heightThumbnail = 100;
+    protected $options = [
+        'width' => 100,
+        'height' => 100
+    ];
 
     public function initialize()
     {
@@ -44,13 +45,13 @@ class AdminThumbnailColumnFeature extends FeatureAbstract
                     echo wp_kses_post(wp_get_attachment_image(
                         get_post_thumbnail_id($postId),
                         [
-                            $this->widthThumbnail,
-                            $this->heightThumbnail
+                            $this->options['width'],
+                            $this->options['height']
                         ],
                         true,
                         [
-                            'width' => $this->widthThumbnail,
-                            'height' => $this->heightThumbnail
+                            'width' => $this->options['width'],
+                            'height' => $this->options['height']
                         ]
                     ));
                 } else {

@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class WindowsIconsAndManifest extends FeatureAbstract
+class WindowsIconsAndManifestFeature extends FeatureAbstract
 {
     protected $options = [
         'queryVar' => 'browserconfig-xml',

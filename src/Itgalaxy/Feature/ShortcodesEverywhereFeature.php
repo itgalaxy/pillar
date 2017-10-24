@@ -13,7 +13,6 @@ class ShortcodesEverywhereFeature extends FeatureAbstract
     public function initialize()
     {
         // In post excerpts (automatic)
-        // Todo Check is the shortcode already executed
         add_filter('wp_trim_excerpt', [$this, 'handleShortcodeInTrimExcerpt'], 10, 2);
         // In post excerpts (manual)
         add_filter('get_the_excerpt', 'do_shortcode');

@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class AppleIconsAndMeta extends FeatureAbstract
+class AppleIconsAndMetaFeature extends FeatureAbstract
 {
     protected $options = [
         'icons' => [

@@ -3,16 +3,18 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class ExtendSiteIconImageSizes extends FeatureAbstract
+class ExtendSiteIconImageSizesFeature extends FeatureAbstract
 {
     protected $options = [
         'icons' => [
+            // WordPress already have this favicon
             // The classic favicon, displayed in the tabs.
-            ['width' => 16, 'height' => 16],
+            // ['width' => 16, 'height' => 16],
             // Basic icon, also certain old but not too old Chrome versions mishandle ico.
-            ['width' => 32, 'height' => 32],
+            ['width' => 32, 'height' => 32]
+            // WordPress already have this favicon
             // Old home screen for Android, MacBook Pro, iMac 27', Nexus 7 and other.
-            ['width' => 192, 'height' => 192]
+            // ['width' => 192, 'height' => 192]
         ]
     ];
 
@@ -48,17 +50,21 @@ class ExtendSiteIconImageSizes extends FeatureAbstract
         $siteIconMimeType = get_post_mime_type($siteIconId);
 
         foreach ($this->options['icons'] as $icon) {
+            $width = $icon['width'];
+            $height = $icon['width'];
             $icon = get_site_icon_url($icon['width']);
 
             if ($icon) {
                 $metaTags[] = sprintf(
                     '<link rel="icon" type="%s" sizes="%dx%d" href="%s">',
                     esc_attr($siteIconMimeType),
-                    esc_attr($icon['width']),
-                    esc_attr($icon['height']),
+                    esc_attr($width),
+                    esc_attr($height),
                     esc_url($icon)
                 );
             }
         }
+
+        return $metaTags;
     }
 }

@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class YandexTableauWidget extends FeatureAbstract
+class YandexTableauWidgetFeature extends FeatureAbstract
 {
     protected $options = [
         'queryVar' => 'yandex-tableau-widget',
