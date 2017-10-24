@@ -58,8 +58,5 @@ class AriaFeature extends FeatureAbstract
             $allowedPostTag['aria-valuenow'] = true;
             $allowedPostTag['aria-valuetext'] = true;
         }
-
-        unset($tag);
-        unset($allowedPostTag);
     }
 }
