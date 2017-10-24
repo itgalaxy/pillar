@@ -94,12 +94,14 @@ class WebAppManifestFeature extends FeatureAbstract
 
             $manifest->start_url = get_home_url(null, '?utm_source=web-app-manifest');
 
+            $strtolower = function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower';
+
             if (!empty($this->options['backgroundColor'])) {
-                $manifest->background_color = mb_strtolower($this->options['backgroundColor']);
+                $manifest->background_color = $strtolower($this->options['backgroundColor']);
             }
 
             if (!empty($this->options['themeColor'])) {
-                $manifest->theme_color = mb_strtolower($this->options['themeColor']);
+                $manifest->theme_color = $strtolower($this->options['themeColor']);
             }
 
             $manifest->icons = [];

@@ -85,7 +85,9 @@ class WindowsIconsAndManifest extends FeatureAbstract
 
 
             if (!empty($this->options['msapplicationTileColor'])) {
-                $tileNode->addChild('TileColor', mb_strtolower($this->options['msapplicationTileColor']));
+                $strtolower = function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower';
+
+                $tileNode->addChild('TileColor', $strtolower($this->options['msapplicationTileColor']));
             }
 
             echo $xml->asXML(); // escape ok

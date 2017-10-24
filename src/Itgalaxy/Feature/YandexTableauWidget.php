@@ -59,11 +59,13 @@ class YandexTableauWidget extends FeatureAbstract
 
             $icon = current($this->options['icons']);
 
+            $strtolower = function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower';
+
             if (!empty($icon['width'])) {
                 $siteIconSrc = get_site_icon_url($icon['width']);
 
                 if ($siteIconSrc) {
-                    $ext = mb_strtolower(pathinfo($siteIconSrc, PATHINFO_EXTENSION));
+                    $ext = $strtolower(pathinfo($siteIconSrc, PATHINFO_EXTENSION));
 
                     if ($ext == 'png') {
                         $manifest->layout->logo = $siteIconSrc;
@@ -72,7 +74,7 @@ class YandexTableauWidget extends FeatureAbstract
             }
 
             if (!empty($this->options['yandexManifestColor'])) {
-                $manifest->layout->color = mb_strtolower($this->options['yandexManifestColor']);
+                $manifest->layout->color = $strtolower($this->options['yandexManifestColor']);
             }
 
             echo wp_json_encode($manifest);
