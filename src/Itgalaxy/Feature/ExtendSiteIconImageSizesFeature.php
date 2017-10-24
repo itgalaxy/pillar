@@ -10,10 +10,11 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
             // The classic favicon, displayed in the tabs.
             ['width' => 16, 'height' => 16],
             // Basic icon, also certain old but not too old Chrome versions mishandle ico.
-            // ['width' => 32, 'height' => 32],
+            ['width' => 32, 'height' => 32],
             // Old home screen for Android, MacBook Pro, iMac 27', Nexus 7 and other.
-            // ['width' => 192, 'height' => 192]
-        ]
+            ['width' => 192, 'height' => 192]
+        ],
+        'noDefault' => true
     ];
 
     /**
@@ -29,6 +30,14 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
 
     public function siteIconImageSizes($sizes)
     {
+        if ($this->options['noDefault']) {
+            $index = array_search([192, 32], $sizes);
+
+            if ($index !== null) {
+                unset($sizes[$index]);
+            }
+        }
+
         $newSizes = [];
 
         foreach ($this->options['icons'] as $size) {
@@ -44,6 +53,18 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
 
     public function siteIconMetaTags($metaTags)
     {
+        if ($this->options['noDefault']) {
+            foreach ($metaTags as $index => $metaTag) {
+                $strpos = function_exists('mb_strpos') ? 'mb_strpos' : 'strpos';
+
+                if ($strpos($metaTag, 'rel="icon"') !== false
+                    && ($strpos($metaTag, 'sizes="32x32"') !== false || $strpos($metaTag, 'sizes="192x192"') !== false)
+                ) {
+                    unset($metaTags[$index]);
+                }
+            }
+        }
+
         $siteIconId = get_option('site_icon');
         $siteIconMimeType = get_post_mime_type($siteIconId);
 

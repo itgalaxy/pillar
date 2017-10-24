@@ -57,6 +57,14 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
     {
         $newSizes = [];
 
+        if ($this->options['noDefault']) {
+            $index = array_search(180, $sizes);
+
+            if ($index !== null) {
+                unset($sizes[$index]);
+            }
+        }
+
         foreach ($this->options['icons'] as $size) {
             if (empty($size['width']) || !is_int($size['width'])) {
                 continue;

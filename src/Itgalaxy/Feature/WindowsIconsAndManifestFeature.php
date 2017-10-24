@@ -104,6 +104,14 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
 
     public function siteIconImageSizes($sizes)
     {
+        if ($this->options['noDefault']) {
+            $index = array_search(270, $sizes);
+
+            if ($index !== null) {
+                unset($sizes[$index]);
+            }
+        }
+
         $newSizes = [];
 
         foreach ($this->options['icons'] as $size) {
@@ -171,7 +179,6 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
             '<meta name="msapplication-config" content="%s">',
             esc_url($url)
         );
-
 
         if (!empty($this->options['msapplicationNavButtonColor'])) {
             $metaTags[] = sprintf(

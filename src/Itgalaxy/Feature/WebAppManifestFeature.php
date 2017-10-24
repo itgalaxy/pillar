@@ -23,7 +23,7 @@ class WebAppManifestFeature extends FeatureAbstract
         'description' => null,
         'display' => 'standalone',
         'orientation' => 'any',
-        'background_color' => null,
+        'backgroundColor' => null,
         // Meta `theme-color` meta extension is supported by Chrome 39+ for Android Lollipop and Firefox OS 2.1+.
         'themeColor' => null
     ];
