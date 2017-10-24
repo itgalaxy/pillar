@@ -70,16 +70,16 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
 
         foreach ($this->options['icons'] as $icon) {
             $width = $icon['width'];
-            $height = $icon['width'];
-            $icon = get_site_icon_url($icon['width']);
+            $height = $icon['height'];
+            $siteIconURL = get_site_icon_url($icon['width']);
 
-            if ($icon) {
+            if ($siteIconURL) {
                 $metaTags[] = sprintf(
                     '<link rel="icon" type="%s" sizes="%dx%d" href="%s">',
                     esc_attr($siteIconMimeType),
                     esc_attr($width),
                     esc_attr($height),
-                    esc_url($icon)
+                    esc_url($siteIconURL)
                 );
             }
         }

@@ -35,12 +35,19 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        add_filter('query_vars', [$this, 'queryVars']);
-        add_filter('rewrite_rules_array', [$this, 'rewriteRulesArray']);
-        add_action('parse_query', [$this, 'handle']);
+        if (class_exists('SimpleXMLElement')) {
+            add_filter('query_vars', [$this, 'queryVars']);
+            add_filter('rewrite_rules_array', [$this, 'rewriteRulesArray']);
+            add_action('parse_query', [$this, 'handle']);
+        }
 
         add_filter('site_icon_image_sizes', [$this, 'siteIconImageSizes']);
         add_filter('site_icon_meta_tags', [$this, 'siteIconMetaTags']);
+    }
+
+    public function activation()
+    {
+        flush_rewrite_rules();
     }
 
     public function queryVars($queryVars)
@@ -76,11 +83,11 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
                     continue;
                 }
 
-                $siteIconSrc = get_site_icon_url($icon['width']);
+                $siteIconURL = get_site_icon_url($icon['width']);
 
-                if ($siteIconSrc) {
+                if ($siteIconURL) {
                     $iconNode = $tileNode->addChild($icon['name']);
-                    $iconNode->addAttribute('src', $siteIconSrc);
+                    $iconNode->addAttribute('src', $siteIconURL);
                 }
             }
 
@@ -158,14 +165,14 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
                 : null;
 
             if (!empty($fallbackIcon) && !empty($fallbackIcon['width'])) {
-                $iconFallback = get_site_icon_url($fallbackIcon['width']);
+                $siteIconURLFallback = get_site_icon_url($fallbackIcon['width']);
 
-                if ($iconFallback) {
+                if ($siteIconURLFallback) {
                     // The msapplication-TileImage value is only supported in Microsoft Edge on Windows 10
                     // The msapplication-TileImage metadata is supported as of Windows 8
                     $metaTags[] = sprintf(
                         '<meta name="msapplication-TileImage" content="%s">',
-                        esc_url($iconFallback)
+                        esc_url($siteIconURLFallback)
                     );
                 }
             }
@@ -189,7 +196,7 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
 
         $msapplicationTooltipValue = !empty($this->options['msapplicationTooltip'])
             ? $this->options['msapplicationTooltip']
-            : get_bloginfo('description');
+            : esc_attr(get_bloginfo('description'));
 
         $metaTags[] = sprintf(
             '<meta name="msapplication-tooltip" content="%s">',

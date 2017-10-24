@@ -89,22 +89,27 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
         }
 
         $siteIconId = get_option('site_icon');
+
+        if (!$siteIconId) {
+            return;
+        }
+
         $siteIconMimeType = get_post_mime_type($siteIconId);
 
-        foreach ($this->options['icons'] as $appleIcon) {
+        foreach ($this->options['icons'] as $icon) {
             if (!empty($appleIcon['fallback'])) {
                 continue;
             }
 
-            $icon = get_site_icon_url($appleIcon['width']);
+            $siteIconURL = get_site_icon_url($appleIcon['width']);
 
-            if ($icon) {
+            if ($siteIconURL) {
                 $metaTags[] = sprintf(
                     '<link rel="apple-touch-icon" type="%s" sizes="%dx%d" href="%s">',
                     esc_attr($siteIconMimeType),
-                    esc_attr($appleIcon['width']),
-                    esc_attr($appleIcon['height']),
-                    esc_url($icon)
+                    esc_attr($icon['width']),
+                    esc_attr($icon['height']),
+                    esc_url($siteIconURL)
                 );
             }
         }
@@ -118,13 +123,13 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
             : null;
 
         if (!empty($fallbackIcon) && !empty($fallbackIcon['width'])) {
-            $iconFallback = get_site_icon_url($fallbackIcon['width']);
+            $siteIconURLFallback = get_site_icon_url($fallbackIcon['width']);
 
-            if ($iconFallback) {
+            if ($siteIconURLFallback) {
                 $metaTags[] = sprintf(
                     '<link rel="apple-touch-icon" type="%s" href="%s">',
                     esc_attr($siteIconMimeType),
-                    esc_url($iconFallback)
+                    esc_url($siteIconURLFallback)
                 );
             }
         }
@@ -145,7 +150,7 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
 
         $appleMobileWebAppTitleValue = !empty($this->options['appleMobileWebAppTitle'])
             ? $this->options['appleMobileWebAppTitle']
-            : get_bloginfo('name');
+            : esc_attr(get_bloginfo('name'));
 
         $metaTags[] = sprintf(
             '<meta name="apple-mobile-web-app-title" content="%s">',

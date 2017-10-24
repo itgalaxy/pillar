@@ -29,6 +29,11 @@ class YandexTableauWidgetFeature extends FeatureAbstract
         add_filter('site_icon_meta_tags', [$this, 'siteIconMetaTags']);
     }
 
+    public function activation()
+    {
+        flush_rewrite_rules();
+    }
+
     public function queryVars($queryVars)
     {
         $queryVars[] = $this->options['queryVar'];
@@ -62,13 +67,13 @@ class YandexTableauWidgetFeature extends FeatureAbstract
             $strtolower = function_exists('mb_strtolower') ? 'mb_strtolower' : 'strtolower';
 
             if (!empty($icon['width'])) {
-                $siteIconSrc = get_site_icon_url($icon['width']);
+                $siteIconURL = get_site_icon_url($icon['width']);
 
-                if ($siteIconSrc) {
-                    $ext = $strtolower(pathinfo($siteIconSrc, PATHINFO_EXTENSION));
+                if ($siteIconURL) {
+                    $ext = $strtolower(pathinfo($siteIconURL, PATHINFO_EXTENSION));
 
                     if ($ext == 'png') {
-                        $manifest->layout->logo = $siteIconSrc;
+                        $manifest->layout->logo = $siteIconURL;
                     }
                 }
             }

@@ -31,6 +31,7 @@
     "require": {
         "php": "^5.6 || ^7.0",
         "itgalaxy/bmp2image": "^2.0.0",
+        "chrisjean/php-ico": "~1.0.4",
         "composer/installers": "^1.0.0"
     },
     "require-dev": {

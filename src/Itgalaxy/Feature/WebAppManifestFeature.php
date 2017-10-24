@@ -43,6 +43,11 @@ class WebAppManifestFeature extends FeatureAbstract
         add_filter('site_icon_meta_tags', [$this, 'siteIconMetaTags']);
     }
 
+    public function activation()
+    {
+        flush_rewrite_rules();
+    }
+
     public function queryVars($queryVars)
     {
         $queryVars[] = $this->options['queryVar'];

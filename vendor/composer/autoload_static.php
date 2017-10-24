@@ -118,6 +118,7 @@ class ComposerStaticInit73589958e6debc5f86dfbcce09460e0e
         'Itgalaxy\\Pillar\\Feature\\EmbedMarkupWrapperFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/EmbedMarkupWrapperFeature.php',
         'Itgalaxy\\Pillar\\Feature\\ExcerptMoreFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ExcerptMoreFeature.php',
         'Itgalaxy\\Pillar\\Feature\\ExtendSiteIconImageSizesFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ExtendSiteIconImageSizesFeature.php',
+        'Itgalaxy\\Pillar\\Feature\\FaviconICOFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/FaviconICOFeature.php',
         'Itgalaxy\\Pillar\\Feature\\HeadCleanUpFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HeadCleanUpFeature.php',
         'Itgalaxy\\Pillar\\Feature\\HtmlminFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HtmlminFeature.php',
         'Itgalaxy\\Pillar\\Feature\\JpegQualityFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/JpegQualityFeature.php',
@@ -146,6 +147,7 @@ class ComposerStaticInit73589958e6debc5f86dfbcce09460e0e
         'Itgalaxy\\Pillar\\Util\\HTML' => __DIR__ . '/../..' . '/src/Itgalaxy/Util/HTML.php',
         'Itgalaxy\\Pillar\\Util\\Str' => __DIR__ . '/../..' . '/src/Itgalaxy/Util/Str.php',
         'Itgalaxy\\Pillar\\Util\\URL' => __DIR__ . '/../..' . '/src/Itgalaxy/Util/URL.php',
+        'PHP_ICO' => __DIR__ . '/..' . '/chrisjean/php-ico/class-php-ico.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
