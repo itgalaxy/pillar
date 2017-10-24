@@ -21,6 +21,7 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
             // Max size 512px for icon
             ['width' => 310, 'height' => 310, 'inManifest' => true, 'name' => 'square310x310logo']
         ],
+        'noDefault' => true,
         'msapplicationTileColor' => null,
         'msapplicationTooltip' => null,
         'msapplicationStartUrl' => null,
@@ -118,6 +119,16 @@ class WindowsIconsAndManifestFeature extends FeatureAbstract
 
     public function siteIconMetaTags($metaTags)
     {
+        if ($this->options['noDefault']) {
+            foreach ($metaTags as $index => $metaTag) {
+                $strpos = function_exists('mb_strpos') ? 'mb_strpos' : 'strpos';
+
+                if ($strpos($metaTag, 'name="msapplication-TileImage"') !== false) {
+                    unset($metaTags[$index]);
+                }
+            }
+        }
+
         $permalinkStructure = get_option('permalink_structure');
 
         if (!empty($this->options['msapplicationTileColor'])) {

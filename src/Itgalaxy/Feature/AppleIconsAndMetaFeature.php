@@ -33,6 +33,7 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
             // Touch icon for iOS 2.0+ and Android 2.1+
             ['width' => 180, 'height' => 180, 'fallback' => true]
         ],
+        'noDefault' => true,
         // Make your web app chrome-less and provide the default iOS app view.
         'appleMobileWebAppCapable' => 'yes',
         //  Control the color scheme of the default view
@@ -69,6 +70,16 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
 
     public function siteIconMetaTags($metaTags)
     {
+        if ($this->options['noDefault']) {
+            foreach ($metaTags as $index => $metaTag) {
+                $strpos = function_exists('mb_strpos') ? 'mb_strpos' : 'strpos';
+
+                if ($strpos($metaTag, 'rel="apple-touch-icon-precomposed"') !== false) {
+                    unset($metaTags[$index]);
+                }
+            }
+        }
+
         $siteIconId = get_option('site_icon');
         $siteIconMimeType = get_post_mime_type($siteIconId);
 

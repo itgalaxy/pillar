@@ -9,10 +9,8 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
         'icons' => [
             // The classic favicon, displayed in the tabs.
             ['width' => 16, 'height' => 16],
-            // WordPress already have this favicon.
             // Basic icon, also certain old but not too old Chrome versions mishandle ico.
-            // ['width' => 32, 'height' => 32]
-            // WordPress already have this favicon.
+            // ['width' => 32, 'height' => 32],
             // Old home screen for Android, MacBook Pro, iMac 27', Nexus 7 and other.
             // ['width' => 192, 'height' => 192]
         ]
