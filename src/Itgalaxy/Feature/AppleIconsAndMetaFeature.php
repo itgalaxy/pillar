@@ -97,11 +97,11 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
         $siteIconMimeType = get_post_mime_type($siteIconId);
 
         foreach ($this->options['icons'] as $icon) {
-            if (!empty($appleIcon['fallback'])) {
+            if (!empty($icon['fallback'])) {
                 continue;
             }
 
-            $siteIconURL = get_site_icon_url($appleIcon['width']);
+            $siteIconURL = get_site_icon_url($icon['width']);
 
             if ($siteIconURL) {
                 $metaTags[] = sprintf(
