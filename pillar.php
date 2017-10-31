@@ -35,14 +35,16 @@ if (file_exists($autoloader = __DIR__ . '/vendor/autoload.php')) {
     include_once $autoloader;
 }
 
-add_action('after_setup_theme', function () {
-    FeatureFactory::loadFeatures();
+$featureFactory = new FeatureFactory();
+
+add_action('after_setup_theme', function () use ($featureFactory) {
+    $featureFactory->loadFeatures();
 }, PHP_INT_MAX);
 
-register_activation_hook(__FILE__, function () {
-    add_option(FeatureFactory::$optionName, ['action' => 'activation']);
+register_activation_hook(__FILE__, function () use ($featureFactory) {
+    add_option($featureFactory->getOptionName(), ['action' => 'activation']);
 });
 
-register_deactivation_hook(__FILE__, function () {
-    delete_option(FeatureFactory::$optionName);
+register_deactivation_hook(__FILE__, function () use ($featureFactory) {
+    delete_option($featureFactory->getOptionName());
 });

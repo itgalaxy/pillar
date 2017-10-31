@@ -93,4 +93,9 @@ class FeatureFactory
     {
         return $this->features;
     }
+
+    public function getOptionName()
+    {
+        return $this->optionName;
+    }
 }
