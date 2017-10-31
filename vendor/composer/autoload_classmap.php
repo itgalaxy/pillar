@@ -90,7 +90,7 @@ return array(
     'Itgalaxy\\Pillar\\Feature\\EmbedMarkupWrapperFeature' => $baseDir . '/src/Itgalaxy/Feature/EmbedMarkupWrapperFeature.php',
     'Itgalaxy\\Pillar\\Feature\\ExcerptMoreFeature' => $baseDir . '/src/Itgalaxy/Feature/ExcerptMoreFeature.php',
     'Itgalaxy\\Pillar\\Feature\\ExtendSiteIconImageSizesFeature' => $baseDir . '/src/Itgalaxy/Feature/ExtendSiteIconImageSizesFeature.php',
-    'Itgalaxy\\Pillar\\Feature\\FaviconICOFeature' => $baseDir . '/src/Itgalaxy/Feature/FaviconICOFeature.php',
+    'Itgalaxy\\Pillar\\Feature\\FaviconIcoFeature' => $baseDir . '/src/Itgalaxy/Feature/FaviconIcoFeature.php',
     'Itgalaxy\\Pillar\\Feature\\HeadCleanUpFeature' => $baseDir . '/src/Itgalaxy/Feature/HeadCleanUpFeature.php',
     'Itgalaxy\\Pillar\\Feature\\HtmlminFeature' => $baseDir . '/src/Itgalaxy/Feature/HtmlminFeature.php',
     'Itgalaxy\\Pillar\\Feature\\JpegQualityFeature' => $baseDir . '/src/Itgalaxy/Feature/JpegQualityFeature.php',

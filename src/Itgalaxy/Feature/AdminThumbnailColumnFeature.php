@@ -12,10 +12,6 @@ class AdminThumbnailColumnFeature extends FeatureAbstract
 
     public function initialize()
     {
-        if (!is_admin()) {
-            return;
-        }
-
         add_filter('manage_posts_columns', [$this, 'addThumbnailColumn'], 10, 2);
         add_action('manage_posts_custom_column', [$this, 'addThumbnailValue'], 10, 2);
         add_filter('manage_pages_columns', [$this, 'addThumbnailColumn']);

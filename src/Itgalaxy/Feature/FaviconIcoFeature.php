@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class FaviconICOFeature extends FeatureAbstract
+class FaviconIcoFeature extends FeatureAbstract
 {
     protected $options = [
         'icons' => [

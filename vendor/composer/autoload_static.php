@@ -118,7 +118,7 @@ class ComposerStaticInit73589958e6debc5f86dfbcce09460e0e
         'Itgalaxy\\Pillar\\Feature\\EmbedMarkupWrapperFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/EmbedMarkupWrapperFeature.php',
         'Itgalaxy\\Pillar\\Feature\\ExcerptMoreFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ExcerptMoreFeature.php',
         'Itgalaxy\\Pillar\\Feature\\ExtendSiteIconImageSizesFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/ExtendSiteIconImageSizesFeature.php',
-        'Itgalaxy\\Pillar\\Feature\\FaviconICOFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/FaviconICOFeature.php',
+        'Itgalaxy\\Pillar\\Feature\\FaviconIcoFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/FaviconIcoFeature.php',
         'Itgalaxy\\Pillar\\Feature\\HeadCleanUpFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HeadCleanUpFeature.php',
         'Itgalaxy\\Pillar\\Feature\\HtmlminFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/HtmlminFeature.php',
         'Itgalaxy\\Pillar\\Feature\\JpegQualityFeature' => __DIR__ . '/../..' . '/src/Itgalaxy/Feature/JpegQualityFeature.php',

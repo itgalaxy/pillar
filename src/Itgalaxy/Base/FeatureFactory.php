@@ -1,23 +1,19 @@
 <?php
 namespace Itgalaxy\Pillar\Base;
 
-use Itgalaxy\Pillar\Util\Str;
-
 class FeatureFactory
 {
-    public static $optionName = 'pillar-plugin';
+    private $optionName = 'pillar-plugin';
 
-    protected static $features = [];
+    private $features = [];
 
-    protected static $featuresDirectory = 'src/Itgalaxy/Feature';
+    private $namespace = '\\Itgalaxy\\Pillar\\Feature\\';
 
-    public static function loadFeatures()
+    public function loadFeatures()
     {
         global $_wp_theme_features;
 
-        $absoluteFeaturesDirectory = realpath(__DIR__ . '/../../../' . self::$featuresDirectory);
-
-        $options = get_option(self::$optionName, []);
+        $options = get_option($this->optionName, []);
 
         $action = null;
 
@@ -42,63 +38,59 @@ class FeatureFactory
             ARRAY_FILTER_USE_KEY
         );
 
-        $existsFeatures = [];
-
-        foreach (glob($absoluteFeaturesDirectory . '/*.php') as $filePath) {
-            $filePath = realpath($filePath);
-            $className = basename($filePath, '.php');
-            $featureName = 'pillar-' . str_replace('-feature', '', Str::snake($className, '-'));
-            $existsFeatures[$featureName] = [
-                'class' => $className
-            ];
-        }
-
         foreach ($enabledFeatures as $featureName => $featureOptions) {
-            if (isset($existsFeatures[$featureName])) {
-                $featureOptions = is_array($featureOptions)
-                    ? $featureOptions[0]
-                    : [];
-                $className = $existsFeatures[$featureName]['class'];
+            $className = str_replace(
+                '-',
+                '',
+                ucwords(str_replace('pillar-', '', $featureName . '-feature'), '-')
+            );
 
-                self::loadFeature('\\Itgalaxy\\Pillar\\Feature\\' . $className, $featureOptions, $action);
-            } else {
-                throw new \Exception('Not found ' . $featureName . ' feature');
+            try {
+                $this->loadFeature($className, $featureOptions, $action);
+            } catch (\Exception $exception) {
+                throw $exception;
             }
         }
 
         if (!empty($action) && $action == 'activation') {
-            update_option(self::$optionName, ['action' => null]);
+            update_option($this->optionName, ['action' => null]);
         }
     }
 
-    public static function loadFeature($featureClass, $options = [], $action = null)
+    public function loadFeature($featureClass, $options = [], $action = null)
     {
-        if (!isset(self::$features[$featureClass])) {
-            self::$features[$featureClass] = new $featureClass(is_array($options) ? $options : []);
-            self::$features[$featureClass]->initialize();
+        $fullyQualifiedClassName = $this->namespace . $featureClass;
+
+        if (!isset($this->features[$fullyQualifiedClassName])) {
+            $this->features[$fullyQualifiedClassName] = new $fullyQualifiedClassName(
+                is_array($options) ? $options : []
+            );
+            $this->features[$fullyQualifiedClassName]->initialize();
 
             if (!empty($action)
                 && $action === 'activation'
-                && method_exists(self::$features[$featureClass], 'activation')
+                && method_exists($this->features[$fullyQualifiedClassName], 'activation')
             ) {
-                self::$features[$featureClass]->activation();
+                $this->features[$fullyQualifiedClassName]->activation();
             }
         }
 
-        return self::$features[$featureClass];
+        return $this->features[$fullyQualifiedClassName];
     }
 
-    public static function unload($featureClass)
+    public function unload($featureClass)
     {
-        if (!isset(self::$features[$featureClass])) {
-            throw new \Exception('Feature ' . $featureClass . ' is not setup');
+        $fullyQualifiedClassName = $this->namespace . $featureClass;
+
+        if (!isset($this->features[$fullyQualifiedClassName])) {
+            throw new \Exception('Feature ' . $fullyQualifiedClassName . ' is not setup');
         }
 
-        unset(self::$features[$featureClass]);
+        unset($this->features[$featureClass]);
     }
 
-    public static function getFeatures()
+    public function getFeatures()
     {
-        return self::$features;
+        return $this->features;
     }
 }
