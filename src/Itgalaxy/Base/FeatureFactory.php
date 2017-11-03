@@ -45,8 +45,12 @@ class FeatureFactory
                 ucwords(str_replace('pillar-', '', $featureName . '-feature'), '-')
             );
 
+            $options = is_array($featureOptions) && isset($featureOptions[0])
+                ? $featureOptions[0]
+                : [];
+
             try {
-                $this->loadFeature($className, $featureOptions, $action);
+                $this->loadFeature($className, $options, $action);
             } catch (\Exception $exception) {
                 throw $exception;
             }

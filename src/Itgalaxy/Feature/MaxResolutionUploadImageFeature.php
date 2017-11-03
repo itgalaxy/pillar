@@ -6,8 +6,8 @@ use Itgalaxy\Pillar\Base\FeatureAbstract;
 class MaxResolutionUploadImageFeature extends FeatureAbstract
 {
     protected $options = [
-        'maxWidth' => 0,
-        'maxHeight' => 0
+        'maxWidth' => 4096,
+        'maxHeight' => 3072
     ];
 
     /**
@@ -17,10 +17,7 @@ class MaxResolutionUploadImageFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        // Check options is set
-        if ($this->options['maxWidth'] > 0 && $this->options['maxHeight'] > 0) {
-            add_filter('wp_handle_upload_prefilter', [$this, 'validateImageSize']);
-        }
+        add_filter('wp_handle_upload_prefilter', [$this, 'validateImageSize']);
     }
 
     public function validateImageSize($file)
