@@ -31,7 +31,9 @@ if (!defined('WPINC')) {
 /*
  * Require Composer autoloader if installed on it's own
  */
-if (file_exists($autoloader = __DIR__ . '/vendor/autoload.php')) {
+$autoloader = __DIR__ . '/vendor/autoload.php';
+
+if (file_exists($autoloader)) {
     include_once $autoloader;
 }
 
