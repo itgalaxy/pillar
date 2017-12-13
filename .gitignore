@@ -6,7 +6,6 @@ logs
 pids
 *.pid
 *.seed
-*.lock
 
 # gitkeep
 !.gitkeep
@@ -20,9 +19,3 @@ pids
 
 # Mac files
 .DS_Store
-
-# Ignore minified files
-*.min.*
-
-# Package
-build
