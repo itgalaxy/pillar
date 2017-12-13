@@ -12,6 +12,8 @@ class NoXmlrpcFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        add_action('xmlrpc_enabled', [$this, '__return_false']);
+        if (has_action('xmlrpc_enabled', '__return_false') === false) {
+            add_action('xmlrpc_enabled', '__return_false', 0);
+        }
     }
 }

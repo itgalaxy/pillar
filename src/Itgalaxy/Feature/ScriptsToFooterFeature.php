@@ -12,7 +12,7 @@ class ScriptsToFooterFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        add_action('wp_enqueue_scripts', [$this, 'jsToFooter']);
+        add_action('wp_enqueue_scripts', [$this, 'scriptsToFooter']);
     }
 
     /**
@@ -20,10 +20,18 @@ class ScriptsToFooterFeature extends FeatureAbstract
      *
      * @return void
      */
-    public function jsToFooter()
+    public function scriptsToFooter()
     {
-        remove_action('wp_head', 'wp_print_scripts');
-        remove_action('wp_head', 'wp_print_head_scripts', 9);
-        remove_action('wp_head', 'wp_enqueue_scripts', 1);
+        if (has_action('wp_head', 'wp_print_scripts') !== false) {
+            remove_action('wp_head', 'wp_print_scripts');
+        }
+
+        if (has_action('wp_head', 'wp_print_head_scripts') !== false) {
+            remove_action('wp_head', 'wp_print_head_scripts', 9);
+        }
+
+        if (has_action('wp_head', 'wp_enqueue_scripts') !== false) {
+            remove_action('wp_head', 'wp_enqueue_scripts', 1);
+        }
     }
 }

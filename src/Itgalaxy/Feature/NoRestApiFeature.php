@@ -16,9 +16,7 @@ class NoRestApiFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        $currentWpVersion = get_bloginfo('version');
-
-        if (version_compare($currentWpVersion, '4.7', '>=')) {
+        if (version_compare(get_bloginfo('version'), '4.7', '>=')) {
             add_filter('rest_authentication_errors', function () {
                 global $wp;
 
@@ -40,22 +38,39 @@ class NoRestApiFeature extends FeatureAbstract
                         'status' => rest_authorization_required_code()
                     ]
                 );
-            });
+            }, 0);
         } else {
             // Filters for WP-API version 2.x
-            add_filter('rest_enabled', '__return_false');
+            if (has_filter('rest_enabled', '__return_false') === false) {
+                add_filter('rest_enabled', '__return_false', 0);
+            }
         }
 
         // Filters for WP-API version 1.x
-        add_filter('json_enabled', '__return_false');
-        add_filter('json_jsonp_enabled', '__return_false');
+        if (has_filter('json_enabled', '__return_false') === false) {
+            add_filter('json_enabled', '__return_false', 0);
+        }
+
+        if (has_filter('json_jsonp_enabled', '__return_false') === false) {
+            add_filter('json_jsonp_enabled', '__return_false', 0);
+        }
 
         // Filters for WP-API version 2.x
-        add_filter('rest_jsonp_enabled', '__return_false');
+        if (has_filter('rest_jsonp_enabled', '__return_false') === false) {
+            add_filter('rest_jsonp_enabled', '__return_false', 0);
+        }
 
         // Remove REST API info from head and headers
-        remove_action('xmlrpc_rsd_apis', 'rest_output_rsd');
-        remove_action('wp_head', 'rest_output_link_wp_head', 10);
-        remove_action('template_redirect', 'rest_output_link_header', 11);
+        if (has_action('xmlrpc_rsd_apis', 'rest_output_rsd') !== false) {
+            remove_action('xmlrpc_rsd_apis', 'rest_output_rsd');
+        }
+
+        if (has_action('wp_head', 'rest_output_link_wp_head') !== false) {
+            remove_action('wp_head', 'rest_output_link_wp_head', 10);
+        }
+
+        if (has_action('template_redirect', 'rest_output_link_header') !== false) {
+            remove_action('template_redirect', 'rest_output_link_header', 11);
+        }
     }
 }

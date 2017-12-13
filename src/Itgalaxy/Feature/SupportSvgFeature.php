@@ -18,7 +18,9 @@ class SupportSvgFeature extends FeatureAbstract
         add_action('admin_init', [$this, 'addCapability']);
 
         // Fix for 4.7.*
-        add_filter('wp_check_filetype_and_ext', [$this, 'svgDisableRealMimeCheck'], 10, 4);
+        if (version_compare(get_bloginfo('version'), '4.7.3', '<')) {
+            add_filter('wp_check_filetype_and_ext', [$this, 'svgDisableRealMimeCheck'], 10, 4);
+        }
     }
 
     public function supportSvg($mimes)

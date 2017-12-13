@@ -57,42 +57,42 @@ class HtmlminFeature extends FeatureAbstract
         // Some plugins can remove default action.
         // Check action exists first.
         add_action('wp_head', function () {
-            if (has_action('wp_head', '_wp_render_title_tag')) {
+            if (has_action('wp_head', '_wp_render_title_tag') !== false) {
                 remove_action('wp_head', '_wp_render_title_tag', 1);
                 add_action('wp_head', [$this, 'renderTitleTag'], 1);
             }
 
-            if (has_action('wp_head', 'wp_resource_hints')) {
+            if (has_action('wp_head', 'wp_resource_hints') !== false) {
                 remove_action('wp_head', 'wp_resource_hints', 2);
                 add_action('wp_head', [$this, 'renderResourceHints'], 2);
             }
 
-            if (has_action('wp_head', 'feed_links')) {
+            if (has_action('wp_head', 'feed_links') !== false) {
                 remove_action('wp_head', 'feed_links', 2);
                 add_action('wp_head', [$this, 'renderFeedLinks'], 2);
             }
 
-            if (has_action('wp_head', 'feed_links_extra')) {
+            if (has_action('wp_head', 'feed_links_extra') !== false) {
                 remove_action('wp_head', 'feed_links_extra', 3);
                 add_action('wp_head', [$this, 'renderFeedLinksExtra'], 3);
             }
 
-            if (has_action('wp_head', 'rsd_link')) {
+            if (has_action('wp_head', 'rsd_link') !== false) {
                 remove_action('wp_head', 'rsd_link');
                 add_action('wp_head', [$this, 'renderRsdLink']);
             }
 
-            if (has_action('wp_head', 'wlwmanifest_link')) {
+            if (has_action('wp_head', 'wlwmanifest_link') !== false) {
                 remove_action('wp_head', 'wlwmanifest_link');
                 add_action('wp_head', [$this, 'renderWlwmanifestLink']);
             }
 
-            if (has_action('wp_head', 'noindex')) {
+            if (has_action('wp_head', 'noindex') !== false) {
                 remove_action('wp_head', 'noindex', 1);
                 add_action('wp_head', [$this, 'renderNoindex'], 1);
             }
 
-            if (has_action('wp_head', 'wp_generator')) {
+            if (has_action('wp_head', 'wp_generator') !== false) {
                 remove_action('wp_head', 'wp_generator');
                 add_action('wp_head', [$this, 'renderGenerator']);
             }
@@ -111,38 +111,38 @@ class HtmlminFeature extends FeatureAbstract
                 // Remove self closing tag and newline <link rel="next">
                 add_filter('wpseo_next_rel_link', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags']);
                 add_filter('wpseo_next_rel_link', ['Itgalaxy\Pillar\Util\Str', 'removeNewLine']);
-            } elseif (has_action('wp_head', 'rel_canonical')) {
+            } elseif (has_action('wp_head', 'rel_canonical') !== false) {
                 // remove newline and self closing tag after <link rel="canonical">
                 remove_action('wp_head', 'rel_canonical');
                 add_action('wp_head', [$this, 'renderRelCanonical']);
             }
 
-            if (has_action('wp_head', 'wp_shortlink_wp_head')) {
+            if (has_action('wp_head', 'wp_shortlink_wp_head') !== false) {
                 remove_action('wp_head', 'wp_shortlink_wp_head', 10);
                 add_action('wp_head', [$this, 'renderShortlinkWpHead'], 10, 0);
             }
 
-            if (has_action('wp_head', 'wp_site_icon')) {
+            if (has_action('wp_head', 'wp_site_icon') !== false) {
                 remove_action('wp_head', 'wp_site_icon', 99);
                 add_action('wp_head', [$this, 'renderSiteIcon'], 99);
             }
 
-            if (has_action('login_head', 'wp_site_icon')) {
+            if (has_action('login_head', 'wp_site_icon') !== false) {
                 remove_action('login_head', 'wp_site_icon', 99);
                 add_action('login_head', [$this, 'renderSiteIcon'], 99);
             }
 
-            if (has_action('admin_head', 'wp_site_icon')) {
+            if (has_action('admin_head', 'wp_site_icon') !== false) {
                 remove_action('admin_head', 'wp_site_icon', 99);
                 add_action('admin_head', [$this, 'renderSiteIcon'], 99);
             }
 
-            if (isset($_GET['replytocom']) && has_action('wp_head', 'wp_no_robots')) {
+            if (has_action('wp_head', 'wp_no_robots') !== false) {
                 remove_action('wp_head', 'wp_no_robots');
                 add_action('wp_head', [$this, 'renderNoRobots']);
             }
 
-            if (has_action('wp_head', 'rest_output_link_wp_head')) {
+            if (has_action('wp_head', 'rest_output_link_wp_head') !== false) {
                 remove_action('wp_head', 'rest_output_link_wp_head', 10);
                 add_action('wp_head', [$this, 'renderRestOutputLinkWpHead'], 10, 0);
             }

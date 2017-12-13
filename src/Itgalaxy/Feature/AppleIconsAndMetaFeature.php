@@ -91,7 +91,7 @@ class AppleIconsAndMetaFeature extends FeatureAbstract
         $siteIconId = get_option('site_icon');
 
         if (!$siteIconId) {
-            return;
+            return $metaTags;
         }
 
         $siteIconMimeType = get_post_mime_type($siteIconId);

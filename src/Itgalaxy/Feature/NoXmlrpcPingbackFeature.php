@@ -12,11 +12,20 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        add_filter('xmlrpc_methods', [$this, 'filterXmlrpcMethod']);
+        add_filter('xmlrpc_methods', [$this, 'filterXMLRPCMethod']);
         add_action('xmlrpc_call', [$this, 'killXmlrpcAction']);
-        add_filter('wp_headers', [$this, 'filterHeaders']);
         add_filter('bloginfo_url', [$this, 'killPingbackUrl'], 10, 2);
         add_filter('bloginfo', [$this, 'killPingbackUrl'], 10, 2);
+        add_filter(
+            'wp_headers',
+            function (array $headers) {
+                if (isset($headers['X-Pingback'])) {
+                    unset($headers['X-Pingback']);
+                }
+
+                return $headers;
+            }
+        );
     }
 
     /**
@@ -26,7 +35,7 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
      *
      * @return mixed[] Returns filtered XMPRPC methods.
      */
-    public function filterXmlrpcMethod(array $methods)
+    public function filterXMPRPCMethod(array $methods)
     {
         unset($methods['pingback.ping']);
         unset($methods['pingback.extensions.getPingbacks']);
@@ -41,7 +50,7 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
      *
      * @return void
      */
-    public function killXmlrpcAction($action)
+    public function killXMPRPCAction($action)
     {
         if ($action === 'pingback.ping' || $action === 'pingback.extensions.getPingbacks') {
             wp_die(
@@ -53,22 +62,6 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
             );
             // escape ok
         }
-    }
-
-    /**
-     * Remove pingback header.
-     *
-     * @param mixed[] $headers All headers.
-     *
-     * @return mixed[] Returns filtered headers.
-     */
-    public function filterHeaders(array $headers)
-    {
-        if (isset($headers['X-Pingback'])) {
-            unset($headers['X-Pingback']);
-        }
-
-        return $headers;
     }
 
     /**

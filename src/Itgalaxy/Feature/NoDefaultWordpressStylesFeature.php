@@ -12,12 +12,19 @@ class NoDefaultWordpressStylesFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        add_filter('use_default_gallery_style', '__return_null');
+        if (has_filter('use_default_gallery_style', '__return_false') === false) {
+            add_filter('use_default_gallery_style', '__return_false');
+        }
 
         add_action('widgets_init', function () {
             global $wp_widget_factory;
 
-            if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
+            if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])
+                && has_action('wp_head', [
+                    $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
+                    'recent_comments_style'
+                ]) !== false
+            ) {
                 remove_action(
                     'wp_head',
                     [

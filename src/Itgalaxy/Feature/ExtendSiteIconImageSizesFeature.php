@@ -66,6 +66,11 @@ class ExtendSiteIconImageSizesFeature extends FeatureAbstract
         }
 
         $siteIconId = get_option('site_icon');
+
+        if (!$siteIconId) {
+            return $metaTags;
+        }
+
         $siteIconMimeType = get_post_mime_type($siteIconId);
 
         foreach ($this->options['icons'] as $icon) {
