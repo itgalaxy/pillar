@@ -15,7 +15,7 @@ class NoXmlrpcPingbackFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoXmlrpcPingbackFeature::class);
+        FeatureFactory::unloadFeature(NoXmlrpcPingbackFeature::class);
 
         parent::tearDown();
     }

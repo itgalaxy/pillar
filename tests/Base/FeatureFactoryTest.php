@@ -63,8 +63,8 @@ class FeatureFactoryTest extends \WP_UnitTestCase
         $this->expectException(\Exception::class);
 
         FeatureFactory::loadFeature(HeadCleanUpFeature::class);
-        FeatureFactory::unload(HeadCleanUpFeature::class);
-        FeatureFactory::unload(HeadCleanUpFeature::class);
+        FeatureFactory::unloadFeature(HeadCleanUpFeature::class);
+        FeatureFactory::unloadFeature(HeadCleanUpFeature::class);
     }
 
     private function dashesToCamelCase($string, $capitalizeFirstCharacter = true)

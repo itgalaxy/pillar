@@ -15,7 +15,7 @@ class ScriptsToFooterFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(ScriptsToFooterFeature::class);
+        FeatureFactory::unloadFeature(ScriptsToFooterFeature::class);
 
         parent::tearDown();
     }

@@ -15,7 +15,7 @@ class NoSelfPingbackFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoSelfPingbackFeature::class);
+        FeatureFactory::unloadFeature(NoSelfPingbackFeature::class);
 
         parent::tearDown();
     }

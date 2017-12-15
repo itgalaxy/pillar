@@ -15,7 +15,7 @@ class NoUnnecessaryDashboardWidgetsFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoUnnecessaryDashboardWidgetsFeature::class);
+        FeatureFactory::unloadFeature(NoUnnecessaryDashboardWidgetsFeature::class);
 
         parent::tearDown();
     }

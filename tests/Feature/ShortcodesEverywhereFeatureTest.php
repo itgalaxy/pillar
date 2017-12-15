@@ -15,7 +15,7 @@ class ShortcodesEverywhereFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(ShortcodesEverywhereFeature::class);
+        FeatureFactory::unloadFeature(ShortcodesEverywhereFeature::class);
 
         parent::tearDown();
     }

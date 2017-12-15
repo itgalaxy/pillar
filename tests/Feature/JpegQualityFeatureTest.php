@@ -15,7 +15,7 @@ class JpegQualityFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(JpegQualityFeature::class);
+        FeatureFactory::unloadFeature(JpegQualityFeature::class);
 
         parent::tearDown();
     }

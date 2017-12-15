@@ -15,7 +15,7 @@ class NoEmojiFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoEmojiFeature::class);
+        FeatureFactory::unloadFeature(NoEmojiFeature::class);
 
         parent::tearDown();
     }

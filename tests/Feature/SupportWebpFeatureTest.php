@@ -15,7 +15,7 @@ class SupportWebpFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(SupportWebpFeature::class);
+        FeatureFactory::unloadFeature(SupportWebpFeature::class);
 
         parent::tearDown();
     }

@@ -15,7 +15,7 @@ class NormalizeUploadFileNameFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NormalizeUploadFileNameFeature::class);
+        FeatureFactory::unloadFeature(NormalizeUploadFileNameFeature::class);
 
         parent::tearDown();
     }

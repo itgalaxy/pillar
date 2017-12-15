@@ -15,7 +15,7 @@ class NoWordpressNavbarLogoFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoWordpressNavbarLogoFeature::class);
+        FeatureFactory::unloadFeature(NoWordpressNavbarLogoFeature::class);
 
         parent::tearDown();
     }

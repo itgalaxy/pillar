@@ -15,7 +15,7 @@ class NoRestApiFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoRestApiFeature::class);
+        FeatureFactory::unloadFeature(NoRestApiFeature::class);
 
         parent::tearDown();
     }
@@ -42,7 +42,7 @@ class NoRestApiFeatureTest extends \WP_UnitTestCase
     {
         global $wp_version;
 
-        FeatureFactory::unload(NoRestApiFeature::class);
+        FeatureFactory::unloadFeature(NoRestApiFeature::class);
 
         $oldVersion = $wp_version;
 

@@ -27,7 +27,7 @@ class RelativeUrlsFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(RelativeUrlsFeature::class);
+        FeatureFactory::unloadFeature(RelativeUrlsFeature::class);
 
         parent::tearDown();
     }

@@ -15,7 +15,7 @@ class NoDefaultWordpressStylesFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoDefaultWordpressStylesFeature::class);
+        FeatureFactory::unloadFeature(NoDefaultWordpressStylesFeature::class);
 
         parent::tearDown();
     }

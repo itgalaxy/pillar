@@ -15,7 +15,7 @@ class SupportSvgFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(SupportSvgFeature::class);
+        FeatureFactory::unloadFeature(SupportSvgFeature::class);
 
         parent::tearDown();
     }

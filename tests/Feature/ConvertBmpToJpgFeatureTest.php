@@ -15,7 +15,7 @@ class ConvertBmpToJpgFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(ConvertBmpToJpgFeature::class);
+        FeatureFactory::unloadFeature(ConvertBmpToJpgFeature::class);
         $this->remove_added_uploads();
 
         parent::tearDown();

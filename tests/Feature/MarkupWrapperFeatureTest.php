@@ -15,7 +15,7 @@ class MarkupWrapperFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(EmbedMarkupWrapperFeature::class);
+        FeatureFactory::unloadFeature(EmbedMarkupWrapperFeature::class);
 
         parent::tearDown();
     }

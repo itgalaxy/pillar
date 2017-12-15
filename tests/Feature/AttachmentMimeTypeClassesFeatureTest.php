@@ -15,7 +15,7 @@ class AttachmentMimeTypeClassesFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(AttachmentMimeTypeClassesFeature::class);
+        FeatureFactory::unloadFeature(AttachmentMimeTypeClassesFeature::class);
 
         parent::tearDown();
     }

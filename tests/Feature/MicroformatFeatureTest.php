@@ -15,7 +15,7 @@ class MicroformatFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(MicroformatFeature::class);
+        FeatureFactory::unloadFeature(MicroformatFeature::class);
 
         parent::tearDown();
     }

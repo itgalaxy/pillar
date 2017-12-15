@@ -34,7 +34,7 @@ class HtmlminFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(HtmlminFeature::class);
+        FeatureFactory::unloadFeature(HtmlminFeature::class);
 
         $GLOBALS['wp_scripts'] = $this->old_wp_scripts;
 

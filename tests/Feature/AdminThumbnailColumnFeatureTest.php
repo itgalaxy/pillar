@@ -15,7 +15,7 @@ class AdminThumbnailColumnFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(AdminThumbnailColumnFeature::class);
+        FeatureFactory::unloadFeature(AdminThumbnailColumnFeature::class);
 
         parent::tearDown();
     }

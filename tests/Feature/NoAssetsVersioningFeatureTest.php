@@ -38,7 +38,7 @@ class NoAssetsVersioningFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(NoAssetsVersioningFeature::class);
+        FeatureFactory::unloadFeature(NoAssetsVersioningFeature::class);
 
         $GLOBALS['wp_scripts'] = $this->old_wp_scripts;
 

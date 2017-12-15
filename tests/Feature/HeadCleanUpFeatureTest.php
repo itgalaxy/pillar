@@ -15,7 +15,7 @@ class HeadCleanUpFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(HeadCleanUpFeature::class);
+        FeatureFactory::unloadFeature(HeadCleanUpFeature::class);
 
         parent::tearDown();
     }

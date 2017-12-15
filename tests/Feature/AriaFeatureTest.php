@@ -15,7 +15,7 @@ class AriaFeatureTest extends \WP_UnitTestCase
 
     public function tearDown()
     {
-        FeatureFactory::unload(AriaFeature::class);
+        FeatureFactory::unloadFeature(AriaFeature::class);
 
         parent::tearDown();
     }

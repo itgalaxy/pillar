@@ -82,7 +82,7 @@ class FeatureFactory
         return $this->features[$fullyQualifiedClassName];
     }
 
-    public function unload($featureClass)
+    public function unloadFeature($featureClass)
     {
         $fullyQualifiedClassName = $this->namespace . $featureClass;
 
