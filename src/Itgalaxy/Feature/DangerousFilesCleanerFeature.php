@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class DangerousFilesCleaner extends FeatureAbstract
+class DangerousFilesCleanerFeature extends FeatureAbstract
 {
     private $coreDangerousFiles = [
         'readme.html',
