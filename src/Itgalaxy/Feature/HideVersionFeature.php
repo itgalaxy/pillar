@@ -46,7 +46,7 @@ class HideVersionFeature extends FeatureAbstract
                 }
 
                 $ver = $query['ver'];
-                $data = 'ver_query_var|' . $ver . '|' . $salt;
+                $data = 'pillar_plugin|ver_query_var|' . $ver . '|' . $salt;
                 $hash = null;
 
                 if (function_exists('hash')) {

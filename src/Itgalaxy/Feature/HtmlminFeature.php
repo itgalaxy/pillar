@@ -14,29 +14,27 @@ class HtmlminFeature extends FeatureAbstract
      */
     public function initialize()
     {
-        // Maybe for best compatibility use `get_echo` function and remove unnecessary characters
-
         // Remove unnecessary html attributes from `script` and `style` tags
         add_filter('style_loader_tag', [$this, 'cleanStyleTag'], 100);
         add_filter('script_loader_tag', [$this, 'cleanScriptTag'], 100);
 
-        // Remove `/>` in html style tag and newline between style tag
+        // Remove self closing tag from `style` tag and newline between `style` tags
         add_filter('style_loader_tag', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags'], 100);
         add_filter('style_loader_tag', ['Itgalaxy\Pillar\Util\Str', 'removeNewLine'], 100);
 
         // Remove newline between script tags
         add_filter('script_loader_tag', ['Itgalaxy\Pillar\Util\Str', 'removeNewLine'], 100);
 
-        // Remove <img />
+        // Remove self closing tag from `img` tag
         add_filter('get_avatar', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags'], 100);
 
-        // Remove <input />
+        // Remove self closing tag from `input` tag
         add_filter('comment_id_fields', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags'], 100);
 
-        // Remove <img />
+        // Remove self closing tag from `img` tag
         add_filter('post_thumbnail_html', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags'], 100);
 
-        // Remove ampty attributes from <img /> (example alt="")
+        // Remove empty attributes from `img` tag
         add_filter('wp_get_attachment_image_attributes', [$this, 'removeEmptyAttributes'], 100);
 
         add_filter('previous_post_rel_link', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags'], 100);
@@ -148,7 +146,7 @@ class HtmlminFeature extends FeatureAbstract
             }
         }, 0);
 
-        // Remove `Stream` HTML comment.
+        // Remove `Stream` plugin HTML comment
         add_filter('wp_stream_frontend_indicator', '__return_false');
     }
 
@@ -162,7 +160,7 @@ class HtmlminFeature extends FeatureAbstract
     public function cleanStyleTag($input)
     {
         preg_match_all(
-        // @codingStandardsIgnoreStart
+            // @codingStandardsIgnoreStart
             "!<link rel='stylesheet'\s?(id='[^']+')?\s+href='(.*)' type='text/css' media='(.*)' />!",
             // @codingStandardsIgnoreEnd
             $input,
@@ -190,9 +188,7 @@ class HtmlminFeature extends FeatureAbstract
      */
     public function cleanScriptTag($input)
     {
-        $input = str_replace("type='text/javascript' ", '', $input);
-
-        return str_replace("'", '"', $input);
+        return str_replace("'", '"', str_replace(" type='text/javascript'", '', $input));
     }
 
     /**
