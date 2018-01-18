@@ -131,6 +131,7 @@ return array(
     'Itgalaxy\\Pillar\\Feature\\ShortcodesEverywhereFeature' => $baseDir . '/src/Itgalaxy/Feature/ShortcodesEverywhereFeature.php',
     'Itgalaxy\\Pillar\\Feature\\SupportSvgFeature' => $baseDir . '/src/Itgalaxy/Feature/SupportSvgFeature.php',
     'Itgalaxy\\Pillar\\Feature\\SupportWebpFeature' => $baseDir . '/src/Itgalaxy/Feature/SupportWebpFeature.php',
+    'Itgalaxy\\Pillar\\Feature\\TemplateMinifyLoaderFeature' => $baseDir . '/src/Itgalaxy/Feature/TemplateMinifyLoaderFeature.php',
     'Itgalaxy\\Pillar\\Feature\\WebAppManifestFeature' => $baseDir . '/src/Itgalaxy/Feature/WebAppManifestFeature.php',
     'Itgalaxy\\Pillar\\Feature\\WindowsIconsAndManifestFeature' => $baseDir . '/src/Itgalaxy/Feature/WindowsIconsAndManifestFeature.php',
     'Itgalaxy\\Pillar\\Feature\\YandexTableauWidgetFeature' => $baseDir . '/src/Itgalaxy/Feature/YandexTableauWidgetFeature.php',
