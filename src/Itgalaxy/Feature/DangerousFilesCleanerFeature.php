@@ -22,9 +22,7 @@ class DangerousFilesCleanerFeature extends FeatureAbstract
         'contributing',
         'contributing.txt',
         'contributing.html',
-        'contributing.md',
-        'composer.json',
-        'composer.lock'
+        'contributing.md'
     ];
 
     /**
