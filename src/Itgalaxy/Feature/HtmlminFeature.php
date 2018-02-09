@@ -203,11 +203,9 @@ class HtmlminFeature extends FeatureAbstract
         $purifiedAttributes = [];
 
         foreach ($attributes as $attribute => $value) {
-            if ($attribute === 'alt') {
-                continue;
-            }
-
-            if (empty($attribute) || strlen(trim($value)) == 0) {
+            if ($attribute != 'alt'
+                && (empty($attribute) || strlen(trim($value)) == 0)
+            ) {
                 continue;
             }
 
