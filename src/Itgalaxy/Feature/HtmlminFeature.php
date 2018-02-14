@@ -110,7 +110,7 @@ class HtmlminFeature extends FeatureAbstract
                 add_filter('wpseo_next_rel_link', ['Itgalaxy\Pillar\Util\HTML', 'removeSelfClosingTags']);
                 add_filter('wpseo_next_rel_link', ['Itgalaxy\Pillar\Util\Str', 'removeNewLine']);
             } elseif (has_action('wp_head', 'rel_canonical') !== false) {
-                // remove newline and self closing tag after <link rel="canonical">
+                // Remove newline and self closing tag after <link rel="canonical">
                 remove_action('wp_head', 'rel_canonical');
                 add_action('wp_head', [$this, 'renderRelCanonical']);
             }
@@ -153,42 +153,34 @@ class HtmlminFeature extends FeatureAbstract
     /**
      * Clean up output of stylesheet <link> tags.
      *
-     * @param string $input Link tag.
+     * @param string $html Link tag.
      *
      * @return string Cleaned link tag.
      */
-    public function cleanStyleTag($input)
+    public function cleanStyleTag($html)
     {
-        preg_match_all(
-            // @codingStandardsIgnoreStart
-            "!<link rel='stylesheet'\s?(id='[^']+')?\s+href='(.*)' type='text/css' media='(.*)' />!",
-            // @codingStandardsIgnoreEnd
-            $input,
-            $matches
-        );
+        $html = str_replace(" type='text/css'", '', $html);
+        $html = str_replace(" media='all'", '', $html);
+        $html = str_replace("'", '"', $html);
+        $html = str_replace("  ", ' ', $html);
 
-        if (empty($matches[2])) {
-            return $input;
-        }
-
-        // Only display media if it is meaningful
-        $media = $matches[3][0] !== '' && $matches[3][0] !== 'all' ? ' media="' . $matches[3][0] . '"' : '';
-
-        // @codingStandardsIgnoreStart
-        return '<link rel="stylesheet" href="' . $matches[2][0] . '"' . $media . '>';
-        // @codingStandardsIgnoreEnd
+        return $html;
     }
 
     /**
      * Clean up output of <script> tags.
      *
-     * @param string $input Script tag.
+     * @param string $html Script tag.
      *
      * @return string Cleaned script tag.
      */
-    public function cleanScriptTag($input)
+    public function cleanScriptTag($html)
     {
-        return str_replace("'", '"', str_replace(" type='text/javascript'", '', $input));
+        $html = str_replace(" type='text/javascript'", '', $html);
+        $html = str_replace("'", '"', $html);
+        $html = str_replace("  ", ' ', $html);
+
+        return $html;
     }
 
     /**

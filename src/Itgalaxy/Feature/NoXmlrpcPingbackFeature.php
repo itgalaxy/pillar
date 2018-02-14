@@ -13,9 +13,9 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
     public function initialize()
     {
         add_filter('xmlrpc_methods', [$this, 'filterXMLRPCMethod']);
-        add_action('xmlrpc_call', [$this, 'killXmlrpcAction']);
-        add_filter('bloginfo_url', [$this, 'killPingbackUrl'], 10, 2);
-        add_filter('bloginfo', [$this, 'killPingbackUrl'], 10, 2);
+        add_action('xmlrpc_call', [$this, 'dieXMPRPCAction']);
+        add_filter('bloginfo_url', [$this, 'removePingbackURL'], 10, 2);
+        add_filter('bloginfo', [$this, 'removePingbackURL'], 10, 2);
         add_filter(
             'wp_headers',
             function (array $headers) {
@@ -50,7 +50,7 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
      *
      * @return void
      */
-    public function killXMPRPCAction($action)
+    public function dieXMPRPCAction($action)
     {
         if ($action === 'pingback.ping' || $action === 'pingback.extensions.getPingbacks') {
             wp_die(
@@ -72,7 +72,7 @@ class NoXmlrpcPingbackFeature extends FeatureAbstract
      *
      * @return string Nothing.
      */
-    public function killPingbackUrl($output, $show)
+    public function removePingbackURL($output, $show)
     {
         if ($show === 'pingback_url') {
             $output = '';
