@@ -3,7 +3,7 @@ namespace Itgalaxy\Pillar\Feature;
 
 use Itgalaxy\Pillar\Base\FeatureAbstract;
 
-class MaxResolutionUploadImageFeature extends FeatureAbstract
+class UploadImageResolutionValidatorFeature extends FeatureAbstract
 {
     protected $options = [
         'maxWidth' => 4096,
@@ -22,6 +22,10 @@ class MaxResolutionUploadImageFeature extends FeatureAbstract
 
     public function validateImageSize($file)
     {
+        if (empty($file['tmp_name'])) {
+            return $file;
+        }
+
         $image = getimagesize($file['tmp_name']);
 
         // Width
