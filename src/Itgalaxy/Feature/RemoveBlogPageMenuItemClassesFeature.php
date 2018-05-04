@@ -40,6 +40,11 @@ class RemoveBlogPageMenuItemClassesFeature extends FeatureAbstract
         }
 
         $postTypeSlug = $postTypeObject->rewrite['slug'];
+
+        if (!$postTypeSlug) {
+            return $classes;
+        }
+
         $menuSlug = mb_strtolower(trim($item->url));
 
         if (mb_strpos($menuSlug, $postTypeSlug) !== false) {
