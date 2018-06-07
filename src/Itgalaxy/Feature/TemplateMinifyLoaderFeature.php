@@ -20,30 +20,11 @@ class TemplateMinifyLoaderFeature extends FeatureAbstract
     {
         $options = $this->options;
 
-        // Todo Need handle `get_template_part`?
-        $templateFilters = [
-            'index_template_hierarchy',
-            '404_template_hierarchy',
-            'archive_template_hierarchy',
-            'author_template_hierarchy',
-            'category_template_hierarchy',
-            'tag_template_hierarchy',
-            'taxonomy_template_hierarchy',
-            'date_template_hierarchy',
-            'home_template_hierarchy',
-            'frontpage_template_hierarchy',
-            'page_template_hierarchy',
-            'paged_template_hierarchy',
-            'search_template_hierarchy',
-            'single_template_hierarchy',
-            'singular_template_hierarchy',
-            'attachment_template_hierarchy',
-            'comments_popup_template_hierarchy',
-            'embed_template_hierarchy'
-        ];
+        $templateFilters = ['template_include'];
 
         if (is_plugin_active('woocommerce/woocommerce.php')) {
-            array_push($templateFilters, 'woocommerce_locate_template');
+            $templateFilters[] = 'woocommerce_locate_template';
+            $templateFilters[] = 'wc_get_template_part';
         }
 
         if (count($options['customFilters']) > 0) {
@@ -55,23 +36,13 @@ class TemplateMinifyLoaderFeature extends FeatureAbstract
         }
     }
 
-    public function minifyTemplate($templates)
+    public function minifyTemplate($template)
     {
-        // Avoid strange behaviour for some plugins
-        if (!is_array($templates) || empty($templates)) {
-            return $templates;
+        // Avoid problem when plugin pass array of templates
+        if (!is_string($template) || empty($template)) {
+            return $template;
         }
 
-        return array_map(
-            function ($template) {
-                return $this->getMinifiedTemplate($template);
-            },
-            $templates
-        );
-    }
-
-    protected function getMinifiedTemplate($template)
-    {
         $options = $this->options;
         $pathInfo = pathinfo($template);
 
@@ -79,14 +50,17 @@ class TemplateMinifyLoaderFeature extends FeatureAbstract
             return $template;
         }
 
-        // Better use template for this purpose, example `{filename}.min.{ext}`
-        $minifiedTemplate = trailingslashit($options['directory'])
-            . trailingslashit($pathInfo['dirname'])
-            . $pathInfo['filename']
-            . '.min.'
-            . $pathInfo['extension'];
+        $nameResolver = isset($options['nameResolver'])
+            ? $options['nameResolver']
+            : function ($template, $pathInfo) {
+                return hash('md4', $template)
+                    . '.'
+                    . $pathInfo['extension'];
+            };
 
-        if (file_exists(trailingslashit(get_template_directory()) . $minifiedTemplate)) {
+        $minifiedTemplate = trailingslashit(realpath($options['directory'])) . $nameResolver($template, $pathInfo);
+
+        if (file_exists($minifiedTemplate)) {
             return $minifiedTemplate;
         }
 
