@@ -20,7 +20,10 @@ class TemplateMinifyLoaderFeature extends FeatureAbstract
     {
         $options = $this->options;
 
-        $templateFilters = ['template_include'];
+        $templateFilters = [
+            'page_template',
+            'template_include'
+        ];
 
         if (is_plugin_active('woocommerce/woocommerce.php')) {
             $templateFilters[] = 'woocommerce_locate_template';
