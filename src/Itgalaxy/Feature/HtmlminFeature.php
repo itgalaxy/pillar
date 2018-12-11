@@ -161,8 +161,6 @@ class HtmlminFeature extends FeatureAbstract
     {
         $html = str_replace(" type='text/css'", '', $html);
         $html = str_replace(" media='all'", '', $html);
-        $html = str_replace("'", '"', $html);
-        $html = str_replace("  ", ' ', $html);
 
         return $html;
     }
@@ -177,8 +175,6 @@ class HtmlminFeature extends FeatureAbstract
     public function cleanScriptTag($html)
     {
         $html = str_replace(" type='text/javascript'", '', $html);
-        $html = str_replace("'", '"', $html);
-        $html = str_replace("  ", ' ', $html);
 
         return $html;
     }
